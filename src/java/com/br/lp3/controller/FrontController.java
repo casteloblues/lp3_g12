@@ -38,9 +38,17 @@ public class FrontController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             if(command.startsWith("login")){
-                
                 if(command.endsWith("login")){
                     //AÇÕES DE LOGIN
+                    if (LoginManager.authorize(username, password)) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("username", username);
+                        //request.getSession().setAttribute("username", username);      Pode ser usado assim tambem
+                        
+                        RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
+                        rd.forward(request, response);
+                    }
+                    else out.println("Acesso negado");
                 }
             }
             
