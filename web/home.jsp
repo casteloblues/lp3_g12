@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Bem vindo  
-            <c:out value = "$(username)"></c:out>
+            <c:out value = "${username}"></c:out>
         </h1>
     </body>
 </html>
